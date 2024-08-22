@@ -3,24 +3,24 @@
     "id": 1,
     "title": "Exposición Rodolfo Nieto",
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis sit deserunt laborum, incidunt delectus ea autem dignissimos repellendus qui! Quo reiciendis harum aliquid. Excepturi repellendus corporis ut, iure eaque ratione.",
-    "date": "Lunes, 19 de Agosto",
-    "time": "10:00 AM",
+    "date": "2024/08/19",
+    "time": "10:00",
     "location": "Plaza Nativa"
   },
   {
     "id": 2,
     "title": "Fería Lanzate",
     "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic officiis autem porro architecto totam. Expedita cum odio dolores mollitia velit eaque obcaecati placeat, eius, ratione nobis est sed voluptatibus. Ipsum!",
-    "date": "Martes, 20 de Agosto",
-    "time": "10:00 AM",
+    "date": "2024/08/20",
+    "time": "10:00",
     "location": "Plaza Nativa"
   },
   {
     "id": 3,
     "title": "Concierto Morat",
     "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque fugit quas consectetur ad deleniti obcaecati voluptates. Officiis ipsa laudantium nesciunt impedit laboriosam, vel reiciendis, odit possimus, cum maiores est nam.",
-    "date": "Miércoles, 22 de Agosto",
-    "time": "03:00 PM",
+    "date": "2024/08/10",
+    "time": "15:00",
     "location": "Plaza Nativa"
   }
 ]
