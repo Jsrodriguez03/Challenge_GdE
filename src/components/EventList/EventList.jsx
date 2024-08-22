@@ -92,7 +92,7 @@ export default function EventList() {
         <h1 className="title">
           <i
             className="fa-solid fa-clipboard-list"
-            style={{ marginRight: "10px" }}
+            style={{ marginRight: "10px", color: "#e6c068" }}
           ></i>{" "}
           Lista de Eventos{" "}
         </h1>
