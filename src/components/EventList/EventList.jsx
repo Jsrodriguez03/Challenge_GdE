@@ -4,6 +4,14 @@ import eventsData from "../../data/events.json";
 
 export default function EventList() {
   const [events, setEvents] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [newEvent, setNewEvent] = useState({
+    title: "",
+    description: "",
+    date: "",
+    time: "",
+    location: "",
+  });
 
   useEffect(() => {
     // Establecer los eventos desde el JSON importado
@@ -22,18 +30,46 @@ export default function EventList() {
     alert(`Eliminar evento con ID: ${id}`);
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewEvent({ ...newEvent, [name]: value });
+  };
+
+  const handleSave = () => {
+    // Crear un nuevo ID para el evento
+    const newId = events.length ? events[events.length - 1].id + 1 : 1;
+    const eventToAdd = { id: newId, ...newEvent };
+
+    // Guardar el nuevo evento en el archivo JSON
+    const updatedEvents = [...events, eventToAdd];
+    setEvents(updatedEvents);
+
+    // Aquí puedes agregar la lógica para guardar el archivo JSON (por ejemplo, usando una API o algún método para escribir en el sistema de archivos)
+
+    // Cerrar el formulario y reiniciar el estado del nuevo evento
+    setShowForm(false);
+    setNewEvent({
+      title: "",
+      description: "",
+      date: "",
+      time: "",
+      location: "",
+    });
+  };
+
   return (
     <div className="container-event-list">
       <div className="header-ManagementEvent">
-        <h1 className="title">
-          {" "}
-          <i className="fa-solid fa-calendar-days"></i> <span></span> Lista de
-          Eventos{" "}
-        </h1>
-        <button type="button" className="btn btn-primary" onClick={() => {}}>
+        <h1 className="title"> Lista de Eventos </h1>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => setShowForm(true)}
+        >
           Agregar Nuevo Evento
         </button>
       </div>
+
       <table className="table">
         <thead>
           <tr>
@@ -87,6 +123,72 @@ export default function EventList() {
           ))}
         </tbody>
       </table>
+
+      {/* Formulario Modal */}
+      {showForm && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Agregar Nuevo Evento</h2>
+            <form>
+              <label>Título</label>
+              <input
+                type="text"
+                name="title"
+                value={newEvent.title}
+                onChange={handleInputChange}
+              />
+
+              <label>Descripción</label>
+              <textarea
+                name="description"
+                value={newEvent.description}
+                onChange={handleInputChange}
+              />
+
+              <label>Fecha</label>
+              <input
+                type="date"
+                name="date"
+                value={newEvent.date}
+                onChange={handleInputChange}
+              />
+
+              <label>Hora</label>
+              <input
+                type="time"
+                name="time"
+                value={newEvent.time}
+                onChange={handleInputChange}
+              />
+
+              <label>Lugar</label>
+              <input
+                type="text"
+                name="location"
+                value={newEvent.location}
+                onChange={handleInputChange}
+              />
+
+              <div className="modal-buttons">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setShowForm(false)}
+                >
+                  Cerrar
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleSave}
+                >
+                  Guardar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
