@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
-import "./EventList.css";
 import eventsData from "../../data/events.json";
 import { toast } from "react-toastify";
+import EventTable from "../../components/EventTable/EventTable";
+import EventForm from "../../components/EventForm/EventForm";
+import Modal from "../../components/Modal";
+import "./EventList.css";
 
 export default function EventList() {
   const [events, setEvents] = useState([]);
@@ -27,9 +30,7 @@ export default function EventList() {
   }, []);
 
   const handleRegister = (title) => {
-    toast.success(
-      `Inscrito en el evento "${title}", gracias por su selección.`
-    );
+    toast.success(`Inscrito en el evento "${title}", gracias por su registro.`);
   };
 
   const handleUpdate = (id) => {
@@ -68,7 +69,8 @@ export default function EventList() {
       );
       toast.success("Evento actualizado exitosamente.");
     } else {
-      const newId = events.length ? events[events.length - 1].id + 1 : 1;
+      const existingIds = events.map((event) => event.id);
+      const newId = existingIds.length ? Math.max(...existingIds) + 1 : 1;
       const eventToAdd = { id: newId, ...newEvent };
       updatedEvents = [...events, eventToAdd];
       toast.success("Evento guardado exitosamente.");
@@ -111,166 +113,23 @@ export default function EventList() {
         </button>
       </div>
 
-      <table className="table">
-        <thead>
-          <tr>
-            <th>
-              <i
-                className="fa-solid fa-signature"
-                style={{ marginRight: "10px" }}
-              ></i>
-              Título
-            </th>
-            <th>
-              <i
-                className="fa-solid fa-file-signature"
-                style={{ marginRight: "5px" }}
-              ></i>
-              Descripción
-            </th>
-            <th>
-              <i
-                className="fa-regular fa-calendar-check"
-                style={{ marginRight: "5px" }}
-              ></i>
-              Fecha
-            </th>
-            <th>
-              <i
-                className="fa-regular fa-clock"
-                style={{ marginRight: "5px" }}
-              ></i>
-              Hora
-            </th>
-            <th>
-              <i
-                className="fa-solid fa-map-location-dot"
-                style={{ marginRight: "5px" }}
-              ></i>
-              Lugar
-            </th>
-            <th>
-              <i
-                className="fa-solid fa-sliders"
-                style={{ marginRight: "5px" }}
-              ></i>
-              Gestión
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {events.map((event) => (
-            <tr key={event.id}>
-              <td>{event.title}</td>
-              <td>{event.description}</td>
-              <td>{event.date}</td>
-              <td>{event.time}</td>
-              <td>{event.location}</td>
-              <td>
-                <div className="dropdown">
-                  <button
-                    className="btn btn-dropdown dropdown-toggle"
-                    type="button"
-                  >
-                    Acciones
-                  </button>
-                  <div className="dropdown-menu">
-                    <button
-                      className="dropdown-item"
-                      onClick={() => handleRegister(event.title)}
-                    >
-                      Inscribirme
-                    </button>
-                    <button
-                      className="dropdown-item"
-                      onClick={() => handleUpdate(event.id)}
-                    >
-                      Actualizar
-                    </button>
-                    <button
-                      className="dropdown-item"
-                      onClick={() => handleDelete(event.id)}
-                    >
-                      Eliminar
-                    </button>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <EventTable
+        events={events}
+        handleRegister={handleRegister}
+        handleUpdate={handleUpdate}
+        handleDelete={handleDelete}
+      />
 
-      {showForm && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>
-              {editEventId !== null
-                ? "Actualizar Evento"
-                : "Agregar Nuevo Evento"}
-            </h2>
-            <form>
-              <label>Título</label>
-              <input
-                type="text"
-                name="title"
-                value={newEvent.title}
-                onChange={handleInputChange}
-              />
-
-              <label>Descripción</label>
-              <textarea
-                name="description"
-                value={newEvent.description}
-                onChange={handleInputChange}
-              />
-
-              <label>Fecha</label>
-              <input
-                type="date"
-                name="date"
-                value={newEvent.date}
-                onChange={handleInputChange}
-              />
-
-              <label>Hora</label>
-              <input
-                type="time"
-                name="time"
-                value={newEvent.time}
-                onChange={handleInputChange}
-              />
-
-              <label>Lugar</label>
-              <input
-                type="text"
-                name="location"
-                value={newEvent.location}
-                onChange={handleInputChange}
-              />
-
-              {formError && <div className="form-error">{formError}</div>}
-
-              <div className="modal-buttons">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={() => setShowForm(false)}
-                >
-                  Cerrar
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-dropdown"
-                  onClick={handleSave}
-                >
-                  {editEventId !== null ? "Actualizar" : "Guardar"}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+      <Modal show={showForm} onClose={() => setShowForm(false)}>
+        <EventForm
+          newEvent={newEvent}
+          handleInputChange={handleInputChange}
+          handleSave={handleSave}
+          handleClose={() => setShowForm(false)}
+          formError={formError}
+          isEditing={editEventId !== null}
+        />
+      </Modal>
     </div>
   );
 }
