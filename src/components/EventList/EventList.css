@@ -9,6 +9,12 @@
   font-size: 2.5em;
 }
 
+.header-ManagementEvent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -24,11 +30,15 @@
 }
 
 .table th {
+  color: #e6c068;
+}
+
+.table th {
   background-color: #3a3b47;
 }
 
 .table tr:hover {
-  background-color: #444;
+  background-color: #3a3b47;
 }
 
 .btn {
@@ -46,4 +56,36 @@
 .btn:hover {
   background-color: #d4a850;
   color: #fff;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #3a3b47;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  background-color: transparent;
+  color: #fff;
+  padding: 8px 16px;
+  text-align: left;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #444;
 }

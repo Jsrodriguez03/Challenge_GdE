@@ -10,9 +10,26 @@ export default function EventList() {
     setEvents(eventsData);
   }, []);
 
+  const handleRegister = (title) => {
+    alert(`Inscrito en ${title}`);
+  };
+
+  const handleUpdate = (id) => {
+    alert(`Actualizar evento con ID: ${id}`);
+  };
+
+  const handleDelete = (id) => {
+    alert(`Eliminar evento con ID: ${id}`);
+  };
+
   return (
     <div className="container-event-list">
-      <h1 className="title">Lista de Eventos</h1>
+      <div className="header-ManagementEvent">
+        <h1 className="title"> Lista de Eventos </h1>
+        <button type="button" className="btn btn-primary" onClick={() => {}}>
+          Agregar Nuevo Evento
+        </button>
+      </div>
       <table className="table">
         <thead>
           <tr>
@@ -21,7 +38,7 @@ export default function EventList() {
             <th scope="col">Fecha</th>
             <th scope="col">Hora</th>
             <th scope="col">Lugar</th>
-            <th scope="col">Inscribirse</th>
+            <th scope="col">Gestión</th>
           </tr>
         </thead>
         <tbody>
@@ -33,13 +50,34 @@ export default function EventList() {
               <td>{event.time}</td>
               <td>{event.location}</td>
               <td>
-                <button
-                  onClick={() => alert(`Inscrito en ${event.title}`)}
-                  type="button"
-                  className="btn btn-primary"
-                >
-                  Inscribirme
-                </button>
+                <div className="dropdown">
+                  <button
+                    className="btn btn-primary dropdown-toggle"
+                    type="button"
+                  >
+                    Acciones
+                  </button>
+                  <div className="dropdown-menu">
+                    <button
+                      className="dropdown-item"
+                      onClick={() => handleRegister(event.title)}
+                    >
+                      Inscribirme
+                    </button>
+                    <button
+                      className="dropdown-item"
+                      onClick={() => handleUpdate(event.id)}
+                    >
+                      Actualizar
+                    </button>
+                    <button
+                      className="dropdown-item"
+                      onClick={() => handleDelete(event.id)}
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                </div>
               </td>
             </tr>
           ))}
