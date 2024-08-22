@@ -17,6 +17,9 @@ export default function Header() {
           <Link to="/events" className="nav-link">
             Eventos
           </Link>
+          <Link to="/about-us" className="nav-link">
+            Nosotros
+          </Link>
         </nav>
       </div>
     </header>

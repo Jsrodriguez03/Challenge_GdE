@@ -37,7 +37,7 @@ export default function HomePage() {
           seguimiento de todos tus eventos, desde pequeños encuentros hasta
           grandes conferencias.
         </p>
-        <Link to="/events" className="btn btn-secondary homepage-learn-more">
+        <Link to="/about-us" className="btn btn-secondary homepage-learn-more">
           Conoce Más
         </Link>
       </section>
