@@ -19,7 +19,7 @@ export default function EventList() {
   }, []);
 
   const handleRegister = (title) => {
-    alert(`Inscrito en ${title}`);
+    alert(`Inscrito en en el evento "${title}", gracias por su selección.`);
   };
 
   const handleUpdate = (id) => {
@@ -43,8 +43,6 @@ export default function EventList() {
     // Guardar el nuevo evento en el archivo JSON
     const updatedEvents = [...events, eventToAdd];
     setEvents(updatedEvents);
-
-    // Aquí puedes agregar la lógica para guardar el archivo JSON (por ejemplo, usando una API o algún método para escribir en el sistema de archivos)
 
     // Cerrar el formulario y reiniciar el estado del nuevo evento
     setShowForm(false);
@@ -92,7 +90,7 @@ export default function EventList() {
               <td>
                 <div className="dropdown">
                   <button
-                    className="btn btn-primary dropdown-toggle"
+                    className="btn btn-dropdown dropdown-toggle"
                     type="button"
                   >
                     Acciones
