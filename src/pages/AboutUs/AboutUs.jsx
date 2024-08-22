@@ -8,6 +8,7 @@ export default function AboutUs() {
         <p>Conoce más sobre nuestro equipo y nuestra misión.</p>
       </header>
       <section className="about-us-content">
+        {/* Integrante 1 */}
         <div className="team-member">
           <img
             src="src\assets\Foto.jpeg"
@@ -24,6 +25,8 @@ export default function AboutUs() {
             </p>
           </div>
         </div>
+
+        {/* Integrante 2 */}
         <div className="team-member">
           <img
             src="src\assets\Foto.jpeg"
@@ -40,6 +43,8 @@ export default function AboutUs() {
             </p>
           </div>
         </div>
+
+        {/* Misión */}
         <div className="company-mission">
           <h2>Nuestra Misión</h2>
           <p>

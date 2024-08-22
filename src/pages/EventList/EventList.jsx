@@ -7,6 +7,7 @@ import Modal from "../../components/Modal";
 import "./EventList.css";
 
 export default function EventList() {
+  // Estados Necesarios
   const [events, setEvents] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [newEvent, setNewEvent] = useState({
@@ -29,10 +30,12 @@ export default function EventList() {
     setEvents(sortEventsByDate(eventsData));
   }, []);
 
+  //Registrarse en un Evento
   const handleRegister = (title) => {
     toast.success(`Inscrito en el evento "${title}", gracias por su registro.`);
   };
 
+  //Actualizar Evento
   const handleUpdate = (id) => {
     const eventToEdit = events.find((event) => event.id === id);
     if (eventToEdit) {
@@ -42,6 +45,7 @@ export default function EventList() {
     }
   };
 
+  //Eliminar Evento
   const handleDelete = (id) => {
     if (window.confirm("¿Estás seguro de que quieres eliminar este evento?")) {
       const updatedEvents = events.filter((event) => event.id !== id);
@@ -50,11 +54,13 @@ export default function EventList() {
     }
   };
 
+  //Cambios en los Inputs del Formulario
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewEvent({ ...newEvent, [name]: value });
   };
 
+  //Agregar Evento, Validaciones del Mismo
   const handleSave = () => {
     const { title, description, date, time, location } = newEvent;
     if (!title || !description || !date || !time || !location) {
@@ -77,7 +83,10 @@ export default function EventList() {
     }
 
     setEvents(sortEventsByDate(updatedEvents));
-    setShowForm(false);
+    resetForm();
+  };
+
+  const resetForm = () => {
     setNewEvent({
       title: "",
       description: "",
@@ -87,10 +96,12 @@ export default function EventList() {
     });
     setFormError("");
     setEditEventId(null);
+    setShowForm(false);
   };
 
+  //Configuración Inicial Para Poder Agregar un Evento
   const handleShowForm = () => {
-    setFormError("");
+    resetForm();
     setShowForm(true);
   };
 
@@ -120,12 +131,12 @@ export default function EventList() {
         handleDelete={handleDelete}
       />
 
-      <Modal show={showForm} onClose={() => setShowForm(false)}>
+      <Modal show={showForm} onClose={resetForm}>
         <EventForm
           newEvent={newEvent}
           handleInputChange={handleInputChange}
           handleSave={handleSave}
-          handleClose={() => setShowForm(false)}
+          handleClose={resetForm}
           formError={formError}
           isEditing={editEventId !== null}
         />

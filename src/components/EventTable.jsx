@@ -8,6 +8,7 @@ export default function EventTable({
   handleDelete,
 }) {
   return (
+    // Creación de Tabla de Eventos
     <table className="table">
       <thead>
         <tr>

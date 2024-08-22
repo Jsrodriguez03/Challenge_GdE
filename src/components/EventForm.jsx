@@ -10,6 +10,7 @@ export default function EventForm({
 }) {
   return (
     <div className="modal-content">
+      {/* Formulario Agregar/Actualizar */}
       <h2>{isEditing ? "Actualizar Evento" : "Agregar Nuevo Evento"}</h2>
       <form>
         <label>Título</label>
@@ -51,6 +52,7 @@ export default function EventForm({
           onChange={handleInputChange}
         />
 
+        {/* Validación de Errores al momento de Guardar/Actualizar */}
         {formError && <div className="form-error">{formError}</div>}
 
         <div className="modal-buttons">

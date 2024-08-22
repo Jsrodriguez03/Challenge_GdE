@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 
 export default function EventDropdown({ onRegister, onUpdate, onDelete }) {
   return (
+    // Opciones del Desplegable
     <div className="dropdown">
       <button className="btn btn-dropdown dropdown-toggle" type="button">
         Acciones
