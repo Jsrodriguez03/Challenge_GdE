@@ -4,7 +4,7 @@
 }
 
 .title {
-  color: white;
+  color: #ffffffbc;
   margin-bottom: 20px;
   font-size: 2.5em;
 }
@@ -13,6 +13,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.btn-addEvent {
+  background: #2b2c34;
 }
 
 .table {
@@ -27,7 +31,7 @@
   text-align: center;
   vertical-align: middle;
   border-bottom: 1px solid #444;
-  color: #fff;
+  color: #ffffffbc;
   background-color: #1f2029;
 }
 

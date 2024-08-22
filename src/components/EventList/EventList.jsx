@@ -98,7 +98,7 @@ export default function EventList() {
         </h1>
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-secondary btn-addEvent"
           onClick={handleShowForm}
         >
           Agregar Nuevo Evento
@@ -261,7 +261,7 @@ export default function EventList() {
                 </button>
                 <button
                   type="button"
-                  className="btn btn-primary"
+                  className="btn btn-dropdown"
                   onClick={handleSave}
                 >
                   {editEventId !== null ? "Actualizar" : "Guardar"}

@@ -1,5 +1,6 @@
 /* Header.css */
 .header {
+  width: 100%;
   background-color: #1f2029;
   color: #e6c068;
   padding: 20px;
@@ -17,9 +18,20 @@
   max-width: 1200px;
 }
 
-.logo {
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #e6c068;
+}
+
+.logo-image {
+  height: 2.5em;
+  margin-right: 0.8em;
+}
+
+.logo-text {
   font-size: 2em;
-  margin: 0;
 }
 
 .nav {
@@ -35,5 +47,12 @@
 }
 
 .nav-link:hover {
-  color: #d4a850;
+  color: white;
+}
+
+.nav-link:focus,
+.nav-link:active {
+  color: white;
+  outline: none;
+  border-bottom: 3px solid white;
 }

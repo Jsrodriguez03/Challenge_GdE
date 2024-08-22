@@ -1,41 +1,11 @@
 .homepage-container {
   text-align: center;
   color: #e6c068;
-  padding: 40px 20px;
-  background-color: #1f2029;
-}
-
-.homepage-header {
-  margin-bottom: 50px;
-}
-
-.homepage-title {
-  font-size: 3em;
-  margin-bottom: 10px;
-}
-
-.homepage-subtitle {
-  font-size: 1.5em;
-  margin-bottom: 20px;
-  color: #d4a850;
-}
-
-.homepage-cta {
-  padding: 15px 30px;
-  font-size: 1.2em;
-  background-color: #e6c068;
-  color: #1f2029;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.homepage-cta:hover {
-  background-color: #d4a850;
+  padding: 20px;
 }
 
 .homepage-features {
-  margin: 50px 0;
+  margin: 10px 0;
 }
 
 .features-title {
@@ -51,11 +21,19 @@
 }
 
 .feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 250px;
   background-color: #2b2c34;
   padding: 20px;
   border-radius: 10px;
   transition: transform 0.3s;
+}
+
+.feature-link {
+  text-decoration: none;
 }
 
 .feature-item:hover {
@@ -65,46 +43,51 @@
 .feature-icon {
   font-size: 2.5em;
   margin-bottom: 15px;
-  color: #d4a850;
+  color: #e6c068;
 }
 
 .feature-title {
   font-size: 1.5em;
   margin-bottom: 10px;
+  text-align: center;
+  color: #e6c068;
 }
 
 .feature-description {
   font-size: 1em;
-  color: #d4a850;
+  color: #ffffffbc;
+  text-align: center;
 }
 
 .homepage-about {
-  margin: 50px 0;
+  margin-top: 70px;
 }
 
 .about-title {
-  font-size: 2.5em;
-  margin-bottom: 20px;
+  font-size: 2em;
+  margin-bottom: 15px;
   color: #e6c068;
 }
 
 .about-description {
-  font-size: 1.2em;
+  font-size: 1em;
   max-width: 800px;
   margin: 0 auto 30px;
-  color: #d4a850;
+  color: #ffffffbc;
 }
 
 .homepage-learn-more {
   padding: 10px 20px;
   font-size: 1.1em;
   background-color: #2b2c34;
-  color: #e6c068;
+  color: #ffffffbc;
   border-radius: 5px;
   text-decoration: none;
   transition: background-color 0.3s;
 }
 
-.homepage-learn-more:hover {
-  background-color: #444;
+.header,
+.footer {
+  width: 100%;
+  box-sizing: border-box;
 }

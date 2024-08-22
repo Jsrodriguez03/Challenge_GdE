@@ -1,18 +1,22 @@
-import HomePage from "../../pages/HomePage";
 import "./Header.css";
+import { Link } from "react-router-dom";
+import logo from "/public/favicon.ico";
 
 export default function Header() {
   return (
     <header className="header">
       <div className="header-content">
-        <h1 className="logo">EventManager</h1>
+        <Link to="/" className="logo-container">
+          <img src={logo} alt="EventManager Logo" className="logo-image" />
+          <h1 className="logo-text">EventManager</h1>
+        </Link>
         <nav className="nav">
-          <a href={<HomePage />} className="nav-link">
+          <Link to="/" className="nav-link">
             Inicio
-          </a>
-          <a href="#events" className="nav-link">
+          </Link>
+          <Link to="/events" className="nav-link">
             Eventos
-          </a>
+          </Link>
         </nav>
       </div>
     </header>
