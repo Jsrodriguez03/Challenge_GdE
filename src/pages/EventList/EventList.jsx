@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import eventsData from "../../data/events.json";
 import { toast } from "react-toastify";
-import EventTable from "../../components/EventTable/EventTable";
-import EventForm from "../../components/EventForm/EventForm";
+import EventTable from "../../components/EventTable";
+import EventForm from "../../components/EventForm";
 import Modal from "../../components/Modal";
 import "./EventList.css";
 
