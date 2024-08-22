@@ -5,6 +5,7 @@ export default function EventDropdown({ onRegister, onUpdate, onDelete }) {
     // Opciones del Desplegable
     <div className="dropdown">
       <button className="btn btn-dropdown dropdown-toggle" type="button">
+        <i className="fa-solid fa-gear" style={{ marginRight: "10px" }}></i>
         Acciones
       </button>
       <div className="dropdown-menu">

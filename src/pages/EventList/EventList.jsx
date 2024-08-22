@@ -120,6 +120,10 @@ export default function EventList() {
           className="btn btn-secondary btn-addEvent"
           onClick={handleShowForm}
         >
+          <i
+            className="fa-regular fa-calendar-plus"
+            style={{ marginRight: "10px" }}
+          ></i>
           Agregar Nuevo Evento
         </button>
       </div>

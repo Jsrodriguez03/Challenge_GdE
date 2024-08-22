@@ -12,12 +12,53 @@ export default function EventTable({
     <table className="table">
       <thead>
         <tr>
-          <th>Título</th>
-          <th>Descripción</th>
-          <th>Fecha</th>
-          <th>Hora</th>
-          <th>Lugar</th>
-          <th>Gestión</th>
+          <th>
+            <i
+              className="fa-solid fa-signature"
+              style={{ marginRight: "5px" }}
+            ></i>
+            Título
+          </th>
+          <th>
+            {" "}
+            <i
+              className="fa-solid fa-file-signature"
+              style={{ marginRight: "5px" }}
+            ></i>
+            Descripción
+          </th>
+          <th>
+            {" "}
+            <i
+              className="fa-solid fa-calendar-week"
+              style={{ marginRight: "5px" }}
+            ></i>{" "}
+            Fecha
+          </th>
+          <th>
+            {" "}
+            <i
+              className="fa-regular fa-clock"
+              style={{ marginRight: "5px" }}
+            ></i>{" "}
+            Hora
+          </th>
+          <th>
+            {" "}
+            <i
+              className="fa-solid fa-map-location-dot"
+              style={{ marginRight: "5px" }}
+            ></i>{" "}
+            Lugar
+          </th>
+          <th>
+            {" "}
+            <i
+              className="fa-solid fa-sliders"
+              style={{ marginRight: "5px" }}
+            ></i>{" "}
+            Gestión
+          </th>
         </tr>
       </thead>
       <tbody>
