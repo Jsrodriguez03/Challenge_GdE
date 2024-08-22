@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./EventList.css";
 import eventsData from "../../data/events.json";
+import { toast } from "react-toastify";
 
 export default function EventList() {
   const [events, setEvents] = useState([]);
@@ -14,20 +15,27 @@ export default function EventList() {
   });
 
   useEffect(() => {
-    // Establecer los eventos desde el JSON importado
     setEvents(eventsData);
   }, []);
 
   const handleRegister = (title) => {
-    alert(`Inscrito en en el evento "${title}", gracias por su selección.`);
+    toast.success(
+      `Inscrito en el evento "${title}", gracias por su selección.`
+    );
   };
 
   const handleUpdate = (id) => {
-    alert(`Actualizar evento con ID: ${id}`);
+    toast.info(`Actualizar evento con ID: ${id}`);
   };
 
   const handleDelete = (id) => {
-    alert(`Eliminar evento con ID: ${id}`);
+    toast.error(`Eliminar evento con ID: ${id}`, {
+      theme: "colored",
+      style: {
+        backgroundColor: "#f44336",
+        color: "#fff",
+      },
+    });
   };
 
   const handleInputChange = (e) => {
@@ -36,15 +44,11 @@ export default function EventList() {
   };
 
   const handleSave = () => {
-    // Crear un nuevo ID para el evento
     const newId = events.length ? events[events.length - 1].id + 1 : 1;
     const eventToAdd = { id: newId, ...newEvent };
-
-    // Guardar el nuevo evento en el archivo JSON
     const updatedEvents = [...events, eventToAdd];
     setEvents(updatedEvents);
 
-    // Cerrar el formulario y reiniciar el estado del nuevo evento
     setShowForm(false);
     setNewEvent({
       title: "",
@@ -122,7 +126,6 @@ export default function EventList() {
         </tbody>
       </table>
 
-      {/* Formulario Modal */}
       {showForm && (
         <div className="modal">
           <div className="modal-content">
