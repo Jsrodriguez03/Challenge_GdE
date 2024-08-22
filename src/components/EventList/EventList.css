@@ -33,6 +33,12 @@
 
 .table th {
   color: #e6c068;
+  font-size: 1.1em;
+}
+
+.table th:nth-child(2),
+.table td:nth-child(2) {
+  width: 50%;
 }
 
 .btn-dropdown {
@@ -134,4 +140,10 @@
 
 .modal-buttons .btn {
   margin-left: 10px;
+}
+
+.form-error {
+  color: red;
+  margin: 10px auto;
+  font-size: 14px;
 }

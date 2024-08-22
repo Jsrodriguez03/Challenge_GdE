@@ -13,6 +13,8 @@ export default function EventList() {
     time: "",
     location: "",
   });
+  const [formError, setFormError] = useState("");
+  const [editEventId, setEditEventId] = useState(null);
 
   useEffect(() => {
     setEvents(eventsData);
@@ -25,17 +27,20 @@ export default function EventList() {
   };
 
   const handleUpdate = (id) => {
-    toast.info(`Actualizar evento con ID: ${id}`);
+    const eventToEdit = events.find((event) => event.id === id);
+    if (eventToEdit) {
+      setNewEvent(eventToEdit);
+      setEditEventId(id);
+      setShowForm(true);
+    }
   };
 
   const handleDelete = (id) => {
-    toast.error(`Eliminar evento con ID: ${id}`, {
-      theme: "colored",
-      style: {
-        backgroundColor: "#f44336",
-        color: "#fff",
-      },
-    });
+    if (window.confirm("¿Estás seguro de que quieres eliminar este evento?")) {
+      const updatedEvents = events.filter((event) => event.id !== id);
+      setEvents(updatedEvents);
+      toast.success("Evento eliminado exitosamente.");
+    }
   };
 
   const handleInputChange = (e) => {
@@ -44,10 +49,25 @@ export default function EventList() {
   };
 
   const handleSave = () => {
-    const newId = events.length ? events[events.length - 1].id + 1 : 1;
-    const eventToAdd = { id: newId, ...newEvent };
-    const updatedEvents = [...events, eventToAdd];
-    setEvents(updatedEvents);
+    const { title, description, date, time, location } = newEvent;
+    if (!title || !description || !date || !time || !location) {
+      setFormError("Por favor, complete todos los campos.");
+      return;
+    }
+
+    if (editEventId !== null) {
+      const updatedEvents = events.map((event) =>
+        event.id === editEventId ? { ...newEvent, id: editEventId } : event
+      );
+      setEvents(updatedEvents);
+      toast.success("Evento actualizado exitosamente.");
+    } else {
+      const newId = events.length ? events[events.length - 1].id + 1 : 1;
+      const eventToAdd = { id: newId, ...newEvent };
+      const updatedEvents = [...events, eventToAdd];
+      setEvents(updatedEvents);
+      toast.success("Evento guardado exitosamente.");
+    }
 
     setShowForm(false);
     setNewEvent({
@@ -57,16 +77,29 @@ export default function EventList() {
       time: "",
       location: "",
     });
+    setFormError("");
+    setEditEventId(null);
+  };
+
+  const handleShowForm = () => {
+    setFormError("");
+    setShowForm(true);
   };
 
   return (
     <div className="container-event-list">
       <div className="header-ManagementEvent">
-        <h1 className="title"> Lista de Eventos </h1>
+        <h1 className="title">
+          <i
+            className="fa-solid fa-clipboard-list"
+            style={{ marginRight: "10px" }}
+          ></i>{" "}
+          Lista de Eventos{" "}
+        </h1>
         <button
           type="button"
           className="btn btn-primary"
-          onClick={() => setShowForm(true)}
+          onClick={handleShowForm}
         >
           Agregar Nuevo Evento
         </button>
@@ -75,12 +108,54 @@ export default function EventList() {
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">Título</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Hora</th>
-            <th scope="col">Lugar</th>
-            <th scope="col">Gestión</th>
+            <th scope="col">
+              {" "}
+              <i
+                className="fa-solid fa-signature"
+                style={{ marginRight: "10px" }}
+              ></i>{" "}
+              Título
+            </th>
+            <th scope="col">
+              {" "}
+              <i
+                className="fa-solid fa-file-signature"
+                style={{ marginRight: "5px" }}
+              ></i>
+              Descripción
+            </th>
+            <th scope="col">
+              {" "}
+              <i
+                className="fa-regular fa-calendar-check"
+                style={{ marginRight: "5px" }}
+              ></i>{" "}
+              Fecha
+            </th>
+            <th scope="col">
+              {" "}
+              <i
+                className="fa-regular fa-clock"
+                style={{ marginRight: "5px" }}
+              ></i>{" "}
+              Hora
+            </th>
+            <th scope="col">
+              {" "}
+              <i
+                className="fa-solid fa-map-location-dot"
+                style={{ marginRight: "5px" }}
+              ></i>{" "}
+              Lugar
+            </th>
+            <th scope="col">
+              {" "}
+              <i
+                className="fa-solid fa-sliders"
+                style={{ marginRight: "5px" }}
+              ></i>{" "}
+              Gestión
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -129,7 +204,11 @@ export default function EventList() {
       {showForm && (
         <div className="modal">
           <div className="modal-content">
-            <h2>Agregar Nuevo Evento</h2>
+            <h2>
+              {editEventId !== null
+                ? "Actualizar Evento"
+                : "Agregar Nuevo Evento"}
+            </h2>
             <form>
               <label>Título</label>
               <input
@@ -170,6 +249,8 @@ export default function EventList() {
                 onChange={handleInputChange}
               />
 
+              {formError && <div className="form-error">{formError}</div>}
+
               <div className="modal-buttons">
                 <button
                   type="button"
@@ -183,7 +264,7 @@ export default function EventList() {
                   className="btn btn-primary"
                   onClick={handleSave}
                 >
-                  Guardar
+                  {editEventId !== null ? "Actualizar" : "Guardar"}
                 </button>
               </div>
             </form>
