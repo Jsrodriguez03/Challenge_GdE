@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import "./EventDropdown.css";
 
 export default function EventDropdown({ onRegister, onUpdate, onDelete }) {
   return (

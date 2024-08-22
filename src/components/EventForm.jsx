@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import "./EventForm.css";
 
 export default function EventForm({
   newEvent,

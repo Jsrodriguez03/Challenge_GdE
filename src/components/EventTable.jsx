@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
-import EventDropdown from "../EventDropdown/EventDropdown";
-import "./EventTable.css";
+import EventDropdown from "./EventDropdown";
 
 export default function EventTable({
   events,
