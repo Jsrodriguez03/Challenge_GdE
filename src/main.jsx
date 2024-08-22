@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
