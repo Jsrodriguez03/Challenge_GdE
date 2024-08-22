@@ -1,12 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 import "./index.css";
-import EventList from "./components/EventList/EventList";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+//Importaciones de Componentes
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import EventList from "./pages/EventList/EventList";
 import HomePage from "./pages/HomePage/HomePage";
 import AboutUs from "./pages/AboutUs/AboutUs";
 
