@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./EventList.css";
-import eventsData from "../../data/events.json"; // Importa directamente el JSON
+import eventsData from "../../data/events.json";
 
 export default function EventList() {
   const [events, setEvents] = useState([]);
@@ -25,7 +25,11 @@ export default function EventList() {
   return (
     <div className="container-event-list">
       <div className="header-ManagementEvent">
-        <h1 className="title"> Lista de Eventos </h1>
+        <h1 className="title">
+          {" "}
+          <i className="fa-solid fa-calendar-days"></i> <span></span> Lista de
+          Eventos{" "}
+        </h1>
         <button type="button" className="btn btn-primary" onClick={() => {}}>
           Agregar Nuevo Evento
         </button>

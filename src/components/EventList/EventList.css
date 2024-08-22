@@ -25,20 +25,15 @@
 .table td {
   padding: 12px;
   text-align: center;
+  vertical-align: middle;
   border-bottom: 1px solid #444;
   color: #fff;
+  background-color: #1f2029;
 }
 
 .table th {
+  background-color: #3a3b47;
   color: #e6c068;
-}
-
-.table th {
-  background-color: #3a3b47;
-}
-
-.table tr:hover {
-  background-color: #3a3b47;
 }
 
 .btn {
@@ -88,4 +83,5 @@
 
 .dropdown-item:hover {
   background-color: #444;
+  color: #fff;
 }
