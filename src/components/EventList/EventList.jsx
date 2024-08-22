@@ -16,8 +16,14 @@ export default function EventList() {
   const [formError, setFormError] = useState("");
   const [editEventId, setEditEventId] = useState(null);
 
+  // Función para ordenar eventos por fecha
+  const sortEventsByDate = (eventsList) => {
+    return [...eventsList].sort((a, b) => new Date(a.date) - new Date(b.date));
+  };
+
+  // Cargar y ordenar los eventos por fecha
   useEffect(() => {
-    setEvents(eventsData);
+    setEvents(sortEventsByDate(eventsData));
   }, []);
 
   const handleRegister = (title) => {
@@ -38,7 +44,7 @@ export default function EventList() {
   const handleDelete = (id) => {
     if (window.confirm("¿Estás seguro de que quieres eliminar este evento?")) {
       const updatedEvents = events.filter((event) => event.id !== id);
-      setEvents(updatedEvents);
+      setEvents(sortEventsByDate(updatedEvents));
       toast.success("Evento eliminado exitosamente.");
     }
   };
@@ -55,20 +61,20 @@ export default function EventList() {
       return;
     }
 
+    let updatedEvents = [];
     if (editEventId !== null) {
-      const updatedEvents = events.map((event) =>
+      updatedEvents = events.map((event) =>
         event.id === editEventId ? { ...newEvent, id: editEventId } : event
       );
-      setEvents(updatedEvents);
       toast.success("Evento actualizado exitosamente.");
     } else {
       const newId = events.length ? events[events.length - 1].id + 1 : 1;
       const eventToAdd = { id: newId, ...newEvent };
-      const updatedEvents = [...events, eventToAdd];
-      setEvents(updatedEvents);
+      updatedEvents = [...events, eventToAdd];
       toast.success("Evento guardado exitosamente.");
     }
 
+    setEvents(sortEventsByDate(updatedEvents));
     setShowForm(false);
     setNewEvent({
       title: "",
@@ -93,8 +99,8 @@ export default function EventList() {
           <i
             className="fa-solid fa-clipboard-list"
             style={{ marginRight: "10px", color: "#e6c068" }}
-          ></i>{" "}
-          Lista de Eventos{" "}
+          ></i>
+          Lista de Eventos
         </h1>
         <button
           type="button"
@@ -108,52 +114,46 @@ export default function EventList() {
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">
-              {" "}
+            <th>
               <i
                 className="fa-solid fa-signature"
                 style={{ marginRight: "10px" }}
-              ></i>{" "}
+              ></i>
               Título
             </th>
-            <th scope="col">
-              {" "}
+            <th>
               <i
                 className="fa-solid fa-file-signature"
                 style={{ marginRight: "5px" }}
               ></i>
               Descripción
             </th>
-            <th scope="col">
-              {" "}
+            <th>
               <i
                 className="fa-regular fa-calendar-check"
                 style={{ marginRight: "5px" }}
-              ></i>{" "}
+              ></i>
               Fecha
             </th>
-            <th scope="col">
-              {" "}
+            <th>
               <i
                 className="fa-regular fa-clock"
                 style={{ marginRight: "5px" }}
-              ></i>{" "}
+              ></i>
               Hora
             </th>
-            <th scope="col">
-              {" "}
+            <th>
               <i
                 className="fa-solid fa-map-location-dot"
                 style={{ marginRight: "5px" }}
-              ></i>{" "}
+              ></i>
               Lugar
             </th>
-            <th scope="col">
-              {" "}
+            <th>
               <i
                 className="fa-solid fa-sliders"
                 style={{ marginRight: "5px" }}
-              ></i>{" "}
+              ></i>
               Gestión
             </th>
           </tr>
