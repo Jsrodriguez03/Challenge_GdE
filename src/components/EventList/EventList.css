@@ -27,6 +27,10 @@
   background-color: #3a3b47;
 }
 
+.table tr:hover {
+  background-color: #444;
+}
+
 .btn {
   background-color: #e6c068;
   color: #1f2029;
