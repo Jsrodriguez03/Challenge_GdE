@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./HomePage.css";
 
 export default function HomePage() {
@@ -8,25 +8,22 @@ export default function HomePage() {
         <h2 className="features-title">Características Principales</h2>
         <div className="features-grid">
           <div className="feature-item">
-            <i className="fa-solid fa-calendar-check feature-icon"></i>
-            <h3 className="feature-title">Gestión de Eventos</h3>
-            <p className="feature-description">
-              Crea, actualiza y elimina eventos fácilmente.
-            </p>
+            <Link to="/events" className="feature-link">
+              <i className="fa-solid fa-calendar-check feature-icon"></i>
+              <h3 className="feature-title">Gestión de Eventos</h3>
+              <p className="feature-description">
+                Crea, actualiza y elimina eventos fácilmente.
+              </p>
+            </Link>
           </div>
           <div className="feature-item">
-            <i className="fa-solid fa-user-check feature-icon"></i>
-            <h3 className="feature-title">Registro de Asistentes</h3>
-            <p className="feature-description">
-              Permite a los usuarios inscribirse y asistir a tus eventos.
-            </p>
-          </div>
-          <div className="feature-item">
-            <i className="fa-solid fa-chart-line feature-icon"></i>
-            <h3 className="feature-title">Reportes</h3>
-            <p className="feature-description">
-              Genera reportes detallados de tus eventos.
-            </p>
+            <Link to="/events" className="feature-link">
+              <i className="fa-solid fa-user-check feature-icon"></i>
+              <h3 className="feature-title">Registro de Asistentes</h3>
+              <p className="feature-description">
+                Permite a los usuarios inscribirse y asistir a tus eventos.
+              </p>
+            </Link>
           </div>
         </div>
       </section>
@@ -40,9 +37,9 @@ export default function HomePage() {
           seguimiento de todos tus eventos, desde pequeños encuentros hasta
           grandes conferencias.
         </p>
-        {/* <Link to="/about" className="btn btn-secondary homepage-learn-more">
+        <Link to="/events" className="btn btn-secondary homepage-learn-more">
           Conoce Más
-        </Link> */}
+        </Link>
       </section>
     </div>
   );
